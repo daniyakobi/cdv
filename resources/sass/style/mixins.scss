@@ -1,0 +1,36 @@
+@mixin font($size, $lineHeight) {
+    font-size: $size;
+    line-height: $lineHeight;
+}
+
+@mixin img($width, $height, $fit) {
+    width: $width;
+    height: $height;
+    object-fit: $fit;
+}
+
+@mixin flexRow($align, $justify) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+@mixin flexCenter() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flexColumn($align, $justify) {
+    display: flex;
+    flex-direction: column;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+@mixin flexColumnCenter() {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

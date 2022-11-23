@@ -1,0 +1,25 @@
+@import '../../style/vars.scss';
+@import '../../style/mixins.scss';
+
+.auth {
+    width: 100%;
+    min-height: 100vh;
+    @include flexCenter();
+    &__form {
+        width: 360px !important;
+        padding: 30px;
+        @include flexColumn(center, flex-start);
+        & button {
+            margin-left: 0 !important;
+        }
+        & .form__block {
+            & h2 {
+                width: 100%;
+                text-align: center;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                font-weight: 600;
+            }
+        }
+    }
+}

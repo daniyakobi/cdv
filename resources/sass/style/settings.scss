@@ -1,0 +1,96 @@
+@import 'vars.scss';
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    color: $white;
+    font-family: 'Proxima Nova', serif;
+    font-weight: 400;
+    margin: 0;
+}
+
+html, body {
+    &::-webkit-scrollbar {
+        width: 7px;
+        background-color: $secondColor;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: $mainColor50;
+        backdrop-filter: blur(10px);
+        border-radius: 9em;
+    }
+}
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: $secondColor;
+}
+
+a {
+    text-decoration: none;
+    color: $white;
+    transition: $tr5 !important;
+    &:hover {
+        color: $yellow !important;
+    }
+}
+
+ul, li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+input, textarea, button {
+    outline: none;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+    font-weight: normal;
+}
+
+p {
+    color: $text !important;
+    padding: 0;
+    margin: 0;
+}
+
+svg {
+    & * {
+        transition: all 0.5s ease-in !important;
+    }
+}
+
+.app-container {
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    padding: 75px 40px 30px calc($sidebarMaxWidth + 15px);
+    overflow: hidden;
+}
+
+.auth-container {
+    padding: 0 !important;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    padding: 0 40px;
+    @include flexRow(center, space-between);
+}

@@ -1,0 +1,630 @@
+@import '../../../../style/vars.scss';
+@import '../../../../style/mixins.scss';
+
+.table {
+  width: 100%;
+  height: 80vh;
+  &__plates {
+    @include flexRow(flex-start, flex-start);
+    flex-wrap: wrap;
+  }
+  &__plate {
+    overflow: hidden;
+    width: 24%;
+    margin-right: 1%;
+    height: 250px;
+    @include flexColumnCenter();
+    background-color: $mainColor30;
+    box-shadow: 0px 0px 10px $mainColor30;
+    backdrop-filter: blur(10px);
+    transition: $tr5;
+    margin-bottom: 20px;
+    &-avatar {
+      width: 125px;
+      height: 125px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      overflow: hidden;
+      & img {
+        @include img(100%, 100%, cover);
+      }
+    }
+    &-name {
+      @include flexColumnCenter();
+      & p {
+        color: $white !important;
+      }
+    }
+    &-info {
+      margin-top: 10px;
+      @include flexCenter();
+      & div {
+        @include flexCenter();
+        color: $yellow;
+        margin-right: 10px;
+        & svg {
+          width: 20px;
+          height: 20px;
+          margin-right: 5px;
+          & path {
+            fill: $yellow;
+          }
+        }
+        &:last-child {
+          margin-right: 0px;
+        }
+      }
+      &-estimation {
+        &.negative {
+          color: $red;
+          & svg {
+            & path {
+              fill: $red;
+            }
+          }
+        }
+        &.positive {
+          color: $green;
+          & svg {
+            & path {
+              fill: $green;
+            }
+          }
+        }
+        &.neutral {
+          color: $yellow;
+          & svg {
+            & path {
+              fill: $yellow;
+            }
+          }
+        }
+      }
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      display: block;
+      width: 75%;
+      height: 100%;
+      transform: skewX(-25deg);
+      background: linear-gradient(
+        to right,
+        $mainColor30 0%,
+        $mainColor50 100%
+      );
+    }
+    &:hover {
+      cursor: pointer;
+      background-color: $mainColor50;
+      & .table__plate-name p {
+        color: $yellow !important;
+      }
+      &:before {
+        animation: {
+          name: shine;
+          duration: 1s;
+        }
+      }
+    }
+    &:nth-child(4n) {
+      margin-right: 0;
+    }
+  }
+  &__details {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    background-color: $mainColor50;
+    backdrop-filter: blur(10px);
+    transition: $tr5;
+    animation: opacity 1s ease-in-out;
+    @include flexColumn(flex-start, flex-start);
+    &-tonality {
+      &.neutral {
+        color: $yellow;
+      }
+      &.positive {
+        color: $green;
+      }
+      &.negative {
+        color: $red;
+      }
+    }
+    &-chart {
+      &-container {
+        @include flexColumnCenter();
+        width: 100%;
+        & h4 {
+          width: 100%;
+          color: #FFDEA0;
+          @include font(14px, 14px);
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          font-weight: 600;
+          margin-bottom: 20px;
+        }
+        &:not(:last-child) {
+          margin-bottom: 30px;
+        }
+      }
+      width: 100%;
+      &-75 {
+        width: 75%
+      }
+      &-60 {
+        width: 60%
+      }
+      &-50 {
+        width: 50%;
+      }
+    }
+    &-comment {
+      position: relative;
+      padding: 10px;
+      padding-right: 50px;
+      border: $borderYellow30;
+      transition: $tr5;
+      @include flexColumn(flex-start, flex-start);
+      cursor: pointer;
+      & .id {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        color: $text;
+        @include font(12px, 12px);
+      }
+      & .tonality {
+        position: absolute;
+        @include flexCenter();
+        right: 10px;
+        top: 10px;
+        & svg {
+          height: 25px;
+          width: auto;
+        }
+        &__tooltip {
+          @include font(16px, 16px);
+          position: absolute;
+          overflow: hidden;
+          opacity: 0;
+          transition: $tr5;
+          padding: 7px;
+          background-color: $mainColor75;
+          z-index: 10;
+          top: -100%;
+          left: 0;
+        }
+        &:hover {
+          .tonality__tooltip {
+            overflow: visible;
+            opacity: 1;
+            backdrop-filter: blur(10px);
+          }
+        }
+        &.neutral {
+          color: $yellow;
+          & svg path {
+            fill: $yellow;
+          }
+          & .tonality__tooltip { color: $yellow; }
+        }
+        &.positive {
+          color: $green;
+          & svg path {
+            fill: $green;
+          }
+          & .tonality__tooltip { color: $green; }
+        }
+        &.negative {
+          color: $red;
+          & svg path {
+            fill: $red;
+          }
+          & .tonality__tooltip { color: $red; }
+        }
+      }
+      & .title {
+        @include flexRow(center, flex-start);
+        margin-bottom: 10px;
+        & img {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          margin-right: 15px;
+        }
+        & div {
+          @include flexColumn(flex-start, flex-start);
+          & .name {
+            margin-bottom: 5px;
+            color: $white;
+            @include font(16px, 16px);
+          }
+          & .date {
+            color: $text;
+            @include font(13px, 13px);
+          }
+        }
+      }
+      & .text {
+        @include font(16px, 16px);
+        color: $text;
+      }
+      &:hover {
+        border: $borderYellow;
+      }
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+      &-post {
+          width: 65%;
+          padding: 0 40px;
+          border-right: $borderYellow50;
+          & p {
+              margin-bottom: 20px;
+          }
+          &-thumb {
+              position: relative;
+              width: 100%;
+              height: 500px;
+              @include flexCenter();
+              background-color: $mainColor30;
+              backdrop-filter: blur(10px);
+              margin-bottom: 20px;
+              overflow: hidden;
+              & img {
+                  height: 100%;
+                  width: auto;
+                  object-fit: cover;
+              }
+          }
+          &-group {
+              margin-bottom: 20px;
+              & a {
+                  @include font(24px, 30px);
+              }
+          }
+          &-more {
+              @include flexRow(center, flex-start);
+              &-item {
+                  @include flexRow(center, center);
+                  @include font(14px, 24px);
+                  color: $text;
+                  & svg {
+                      margin-right: 5px;
+                      & path {
+                          fill: $text;
+                      }
+                  }
+                  &:not(:last-child) {
+                      margin-right: 10px;
+                  }
+                  &:last-child {
+                      margin-right: 0;
+                      margin-left: auto;
+                  }
+              }
+          }
+          &-comments {
+              margin-top: 20px;
+              & h3 {
+                  @include font(20px, 24px);
+                  margin-bottom: 20px;
+              }
+          }
+          &-comment {
+              &:not(:last-child) {
+                  margin-bottom: 10px;
+              }
+              padding: 5px;
+              transition: $tr5;
+              background-color: $mainColor00;
+              box-shadow: 0px 0px 0px $mainColor30;
+              backdrop-filter: blur(0px);
+              cursor: pointer;
+              &:hover {
+                  background-color: $mainColor30;
+              }
+              &-author {
+                  @include flexRow(center, flex-start);
+                  margin-bottom: 5px;
+                  & img {
+                      width: 50px;
+                      height: 50px;
+                      object-fit: cover;
+                      border-radius: 50%;
+                      margin-right: 10px;
+                  }
+                  & div {
+                      @include flexColumn(flex-start, flex-start);
+                      & a, & p {
+                          @include font(14px, 20px);
+                      }
+                      & a {
+                          margin-bottom: 5px;
+                      }
+                  }
+              }
+              &-text {
+                  padding-left: 60px;
+                  @include font(18px, 22px);
+              }
+          }
+      }
+      &-post-info {
+          width: 35%;
+          padding-left: 10px;
+          overflow-y: scroll;
+          &::-webkit-scrollbar {
+              display: none;
+          }
+      }
+    &-element {
+        border: $borderYellow50;
+        @include flexColumn(flex-start, flex-start);
+        padding: 15px;
+        transition: $tr5;
+        cursor: pointer;
+        &:hover {
+            border: $borderYellow;
+            background-color: $yellow;
+            box-shadow: 0px 0px 10px $yellow;
+            & span {
+                color: $secondColor;
+            }
+            & div {
+                color: $mainColor;
+            }
+        }
+        &:not(:last-child) {
+            margin-right: 20px;
+        }
+        & span {
+            color: $text;
+            @include font(12px, 14px);
+            margin-bottom: 5px;
+            transition: $tr5;
+        }
+        & div {
+            color: $yellow;
+            @include font(30px, 36px);
+            transition: $tr5;
+        }
+    }
+    &-block {
+      @include flexColumn(flex-start, flex-start);
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background-color: $mainColor50;
+      padding: 65px 70px 25px 40px;
+      transition: $tr5;
+      overflow: hidden;
+      &::before {
+        position: absolute;
+        content: '';
+        right: 54px;
+        top: 0;
+        width: 1px;
+        height: 100%;
+        background-color: $yellow30;
+        z-index: 2;
+      }
+      &-title {
+        @include flexRow(flex-end, space-between);
+        width: 100%;
+        margin-bottom: 30px;
+        & h2 {
+          color: $yellow;
+          @include font(30px, 30px);
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          font-weight: 600;
+        }
+        & a {
+          margin-left: 20px;
+          @include font(16px, 24px);
+          color: $text;
+          cursor: pointer;
+          &:hover {
+            color: $yellow;
+          }
+        }
+      }
+      &-info {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        & h3 {
+          color: #FFDEA0;
+          @include font(18px, 18px);
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          font-weight: 600;
+          margin-bottom: 20px;
+        }
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        & p {
+          width: 100%;
+          @include font(18px, 24px);
+          &.separator {
+            width: 100%;
+            color: $yellow !important;
+            @include font(14px, 20px);
+            padding-bottom: 5px;
+            border-bottom: 1px solid $yellow30;
+            margin-bottom: 10px;
+            &:not(:first-child) {
+              margin-top: 20px;
+            }
+          }
+        }
+      }
+    }
+    &-close {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      right: 0;
+      top: 60px;
+      cursor: pointer;
+      @include flexCenter();
+      transition: $tr5;
+      & svg {
+        width: 100%;
+        height: 100%;
+        transform: rotate(45deg);
+        & path {
+            fill: $yellow;
+        }
+      }
+      &:hover {
+          animation: rotation 1s ease-in-out alternate;
+          & svg path {
+              fill: $red;
+          }
+      }
+    }
+  }
+  &.loading {
+    & .table__body {
+      @include flexCenter();
+    }
+  }
+  &__header {
+    margin-bottom: 25px;
+    & h3 {
+      @include font(30px, 36px);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+  }
+  &__buttons {
+    width: 100%;
+    padding-bottom: 10px;
+    @include flexRow(center, flex-start);
+    margin-bottom: 25px;
+    &-button {
+      margin-left: 0;
+      cursor: pointer;
+      &:not(:last-child) {
+        margin-right: 25px;
+      }
+    }
+  }
+  &__body {
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    &.lock {
+      overflow: hidden;
+    }
+    &-row {
+      width: 100%;
+      min-height: 40px;
+      border-bottom: 1px solid $mainColor50;
+      transition: $tr3;
+      @include flexRow(flex-start, flex-start);
+      cursor: pointer;
+      &--title {
+        position: sticky;
+        left: 0;
+        top: 0;
+        background-color: $yellow !important;
+        color: $mainColor !important;
+        cursor: default;
+      }
+      &:nth-child(2n) {
+        background-color: $mainColor30;
+      }
+      &:hover {
+        background-color: $mainColor;
+      }
+    }
+    &-column {
+      width: 100%;
+      min-width: 200px;
+      @include flexCenter();
+      padding: 10px;
+      @include font(16px, 20px);
+      text-align: center;
+      word-wrap: break-word;
+      & a {
+        &:hover {
+          color: $yellow !important;
+        }
+      }
+    }
+    &-bg {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 50%;
+      height: auto;
+      transform: translate(-50%,-50%);
+      opacity: 0.7;
+    }
+    &::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+      background-color: $secondColor;
+      &-thumb {
+        width: 100%;
+        background-color: $mainColor50;
+        transition: $tr3 !important;
+        &:hover {
+          background-color: $yellow;
+        }
+      }
+      &-button {
+        overflow: hidden;
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.row {
+    @include flexRow(flex-start, flex-start);
+    &:not(:last-child) {
+      margin-bottom: 30px;
+    }
+}
+.column {
+  width: 100%;
+  &.center {
+    @include flexColumnCenter();
+  }
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+}
+
+@keyframes rotation {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(180deg) }
+}
+@keyframes opacity {
+  0% { overflow: hidden; opacity: 0; }
+  100% { overflow: visible; opacity: 1; }
+}
+@keyframes shine {
+  20% {
+    left: 0;
+  }
+  100% {
+    left: 125%;
+  }
+}

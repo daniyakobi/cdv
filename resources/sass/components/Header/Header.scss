@@ -1,0 +1,29 @@
+@import '../../style/vars.scss';
+@import '../../style/mixins.scss';
+
+.header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    background-color: $mainColor50;
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    &__account {
+        cursor: pointer;
+        transition: all 0.5s ease-in;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        @include flexCenter();
+        &:hover {
+            background-color: $yellow;
+            & svg {
+                & path {
+                    fill: $mainColor;
+                }
+            }
+        }
+    };
+}

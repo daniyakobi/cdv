@@ -1,0 +1,112 @@
+@import '../../../style/vars.scss';
+@import '../../../style/mixins.scss';
+
+.module {
+  @include flexRow(flex-start, flex-start);
+  flex-wrap: wrap;
+  &__top {
+    width: 100%;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: $borderYellow50;
+    @include flexRow(center, space-between);
+  }
+  &__title {
+    & h3 {
+      color: $yellow;
+      @include font(20px, 30px);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+  }
+  &__back {
+    height: 30px;
+    padding: 0 15px;
+    background: transparent;
+    @include flexRow(center, flex-start);
+    transition: $tr3;
+    cursor: pointer;
+    & svg {
+      margin-right: 15px;
+      & path {
+        fill: $yellow;
+      }
+    }
+    & span {
+      color: $yellow;
+      @include font(16px, 16px)
+    }
+    &:hover {
+      background: $mainColor50;
+      backdrop-filter: blur(10px);
+      box-shadow: 0px 0px 10px $mainColor30;
+    }
+  }
+  &__item {
+    width: 23%;
+    height: 250px;
+    background: $mainColor30;
+    backdrop-filter: blur(10px);
+    &:not(:nth-child(3n)) {
+      margin-right: 2%;
+    }
+    margin-bottom: 2%;
+    @include flexColumnCenter();
+    cursor: pointer;
+    transition: $tr5;
+    overflow: hidden;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      display: block;
+      width: 75%;
+      height: 100%;
+      transform: skewX(-25deg);
+      background: linear-gradient(
+        to right,
+        $mainColor30 0%,
+        $mainColor50 100%
+      );
+    }
+    &:hover {
+      box-shadow: 0px 0px 10px $mainColor30;
+      & svg {
+        & path {
+          fill: $yellow;
+        }
+      }
+      & *  {
+        color: $yellow;
+      }
+      &:before {
+        animation: {
+          name: shine;
+          duration: 1s;
+        }
+      }
+    }
+    & svg {
+      height: 100px;
+      width: auto;
+      margin-bottom: 20px;
+      & path {
+        fill: $white;
+      }
+    }
+    & span {
+      @include font(20px, 24px);
+      color: $white;
+    }
+  }
+}
+
+@keyframes shine {
+  20% {
+    left: 0;
+  }
+  100% {
+    left: 125%;
+  }
+}

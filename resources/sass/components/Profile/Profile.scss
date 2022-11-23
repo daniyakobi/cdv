@@ -1,0 +1,10 @@
+@import '../../style/vars.scss';
+@import '../../style/mixins.scss';
+
+.profile {
+    @include flexRow(flex-start, flex-start);
+    height: 100%;
+    &__module {
+        width: 100%;
+    }
+}

@@ -1,0 +1,282 @@
+@import './vars.scss';
+@import './mixins.scss';
+
+.form {
+    @include flexColumn(flex-end, flex-start);
+    width: 100%;
+    padding: 30px 50px;
+    background-color: $mainColor50;
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
+    &__message {
+        @include font(20px, 24px);
+        width: 100%;
+        height: 24px;
+        &--accept {
+            color: $green !important;
+        }
+        &--error {
+            color: $red !important;
+        }
+    }
+    &__button {
+        position: relative;
+        @include flexCenter();
+        min-width: 75px;
+        padding: 0 5px;
+        height: 50px;
+        margin-left: 35px;
+        background-color: $yellow;
+        color: $secondColor;
+        border: 1px solid $yellow;
+        transition: $tr5;
+        @include font(20px, 24px);
+        &.long {
+            min-width: 170px;
+        }
+        &.active {
+            color: $yellow !important;
+            background-color: $secondColor !important;
+            &:hover {
+                background-color: $mainColor !important;
+            }
+        }
+        &:hover {
+            color: $yellow !important;
+            background-color: $secondColor !important;
+        }
+        &:disabled, &:disabled:hover{
+            color: $text !important;
+            background-color: $mainColor !important;
+            border: 1px solid $mainColor !important;
+            cursor: default;
+        }
+    }
+    &__block {
+        position: relative;
+        margin-bottom: 30px;
+        width: 100%;
+        height: auto;
+        &--row {
+            @include flexRow(center, space-between);
+        }
+        &--wrap {
+            @include flexRow(center, space-between);
+            flex-wrap: wrap;
+        }
+        &-input {
+            position: relative;
+            @include flexRow(center, flex-start);
+            width: 100%;
+            height: 50px;
+            transition: $tr3;
+            background-color: $secondColor;
+            & * {
+                cursor: pointer;
+            }
+            &:hover {
+                & .form__button {
+                    color: $yellow !important;
+                    background-color: $secondColor !important;
+                }
+            }
+            &-clear {
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 50px;
+                height: 50px;
+                @include flexCenter();
+                z-index: 20;
+                transition: $tr3;
+                & svg {
+                    width: 100%;
+                    height: 100%;
+                    & path {
+                        fill: $yellow;
+                    }
+                }
+                &:hover {
+                    & svg path {
+                        fill: $red;
+                    }
+                }
+            }
+            &-file {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+                z-index: 10;
+                overflow: hidden;
+                opacity: 0;
+            }
+            &-button {
+                margin-left: 0;
+            }
+            &-title {
+                height: 100%;
+                padding: 10px 20px;
+                @include flexRow(center, flex-start);
+                & p {
+                    @include font(18px, 18px);
+                    color: $yellow !important;
+                }
+            }
+        }
+        &-radio {
+            position: relative;
+            width: 24%;
+            @include flexColumnCenter();
+            min-width: 210px;
+            height: 210px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid $secondColor;
+            background-color: $secondColor50;
+            box-shadow: 0px 0px 10px $secondColor50;
+            cursor: pointer;
+            transition:  $tr3;
+            @include font(20px, 24px);
+            &:hover {
+                color: $yellow;
+                box-shadow: 0px 0px 10px $yellow;
+                & svg path {
+                    fill: $yellow;
+                }
+            }
+            & svg {
+                width: 75px;
+                height: 75px;
+                margin-bottom: 20px;
+                & path {
+                    fill: $white;
+                }
+            }
+            &.select {
+                color: $mainColor;
+                background-color: $yellow;
+                box-shadow: 0px 0px 10px $secondColor50;
+                & svg path {
+                    fill: $mainColor;
+                }
+                &:hover {
+                    color: $mainColor;
+                    box-shadow: 0px 0px 10px $yellow;
+                    & svg path {
+                        fill: $mainColor;
+                    }
+                }
+            }
+        }
+        input {
+            @include font(18px, 18px);
+            display: block;
+            width: 100%;
+            padding: 10px;
+            color: $yellow;
+            height: 50px;
+            border-bottom: 1px solid $yellow50;
+            transition: $tr3;
+            background-color: $secondColor;
+        }
+        input:focus { outline:none; }
+        
+        label {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 10px;
+            transition: $tr3;
+            @include font(20px, 24px);
+            color: $text;
+            font-weight:normal;
+            pointer-events:none;
+            -moz-transition: $tr3; 
+            -webkit-transition: $tr3;
+        }
+        input:focus ~ label, input:valid ~ label {
+            top: 0;
+            left: 0;
+            transform: translateY(-100%);
+            @include font(12px, 12px);
+            color: $yellow;
+        }
+        .bar { 
+            position: relative; 
+            display: block; 
+            width: 100%; 
+            background-color: $yellow50;
+            height: 1px;
+        }
+        .bar:before, .bar:after {
+            content: '';
+            height: 2px; 
+            width: 0;
+            bottom: 0; 
+            position: absolute;
+            background: $yellow; 
+            transition: $tr3; 
+            -moz-transition: $tr3; 
+            -webkit-transition: $tr3;
+        }
+        .bar:before {
+            left: 50%;
+        }
+        .bar:after {
+            right: 50%; 
+        }
+        input:focus ~ .bar:before, input:focus ~ .bar:after {
+            width: 50%;
+        }
+        
+        .highlight {
+            position: absolute;
+            height: 60%; 
+            width: 25%; 
+            top: 25%; 
+            left: 0;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+         
+         input:focus ~ .highlight {
+            -webkit-animation:inputHighlighter 0.3s ease;
+            -moz-animation:inputHighlighter 0.3s ease;
+            animation:inputHighlighter 0.3s ease;
+        }
+    }
+}
+
+.input {
+    @include font(18px, 18px);
+    display: block;
+    width: 100%;
+    padding: 10px;
+    color: $yellow;
+    height: 50px;
+    border: $borderYellow50;
+    transition: $tr5;
+    background-color: transparent;
+    &:focus {
+        outline: none;
+        border: $borderYellow30;
+        border-bottom: $borderYellow;
+    }
+}
+  
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+    from { background: $yellow; }
+    to { width: 0; background: transparent; }
+}
+@-moz-keyframes inputHighlighter {
+    from { background: $yellow; }
+    to { width: 0; background: transparent; }
+}
+@keyframes inputHighlighter {
+    from { background: $yellow; }
+    to { width: 0; background: transparent; }
+}

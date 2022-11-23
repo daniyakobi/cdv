@@ -1,0 +1,216 @@
+@import '../../style/vars.scss';
+@import '../../style/mixins.scss';
+
+.sidebar {
+    position: fixed;
+    min-width: 200px;
+    max-width: $sidebarMaxWidth;
+    width: 100%;
+    @include flexColumn(center, space-between);
+    background-color: $secondColor;
+    left: 0;
+    top: 0;
+    min-height: 100vh;
+    padding: 75px 0 30px 40px;
+    &__block {
+        width: 100%;
+    }
+    &__line {
+        height: 1px;
+        width: 85%;
+        background-color: $yellow75;
+        margin: 25px 0;
+        margin-bottom: auto;
+    }
+    &__link {
+        @include flexRow(center, flex-start);
+        width: 100%;
+        height: 50px;
+        // border-radius: 10px;
+        transition: all 0.5s ease-in;
+        background-color: transparent;
+        padding: 10px;
+        color: $white;
+        & svg {
+            margin-right: 20px;
+            filter: drop-shadow(0px 12px 24px rgba(0, 0, 0, 0.1));
+        }
+        font-weight: 600;
+        @include font(18px, 22px);
+        &:hover {
+            color: $yellow;
+            background-color: $mainColor50;
+        }
+        &.instagram {
+            & circle.instagram--normal {
+                opacity: 1;
+                visibility: visible;
+            }
+            & circle.instagram--active {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+        &.active {
+            color: $yellow;
+            background-color: $mainColor50;
+            &.vk { 
+                & svg {
+                    & ellipse {
+                        fill: $vk;
+                        opacity: 1;
+                    }
+                }
+            }
+            &.telegram {
+                & svg {
+                    & circle {
+                        fill: $telegram;
+                        opacity: 1;
+                    }
+                }
+            }
+            &.instagram {
+                & svg {
+                    & circle.instagram--normal {
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+                    & circle.instagram--active {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+            }
+            &.facebook {
+                & svg {
+                    & circle {
+                        fill: $facebook;
+                        opacity: 1;
+                    }
+                }
+            }
+            &.twitter {
+                & svg {
+                    & circle {
+                        fill: $twitter;
+                        opacity: 1;
+                    }
+                }
+            }
+            &.youtube {
+                & svg {
+                    & circle {
+                        fill: $youtube;
+                        opacity: 1;
+                    }
+                }
+            }
+            &.link {
+                & svg {
+                    & rect.link__rect, & path.link__rect {
+                        fill: $yellow;
+                        fill-opacity: 1;
+                    }
+                    & path {
+                        fill: $mainColor;
+                        fill-opacity: 1;
+                    }
+                }
+            }
+        }
+        &.vk { 
+            &:hover {
+                & svg {
+                    & ellipse {
+                        fill: $vk;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &.telegram {
+            &:hover {
+                & svg {
+                    & circle {
+                        fill: $telegram;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &.instagram {
+            &:hover {
+                & svg {
+                    & circle.instagram--normal {
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+                    & circle.instagram--active {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+        &.facebook {
+            &:hover {
+                & svg {
+                    & circle {
+                        fill: $facebook;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &.twitter {
+            &:hover {
+                & svg {
+                    & circle {
+                        fill: $twitter;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &.youtube {
+            &:hover {
+                & svg {
+                    & circle {
+                        fill: $youtube;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &.exit {
+            &:hover {
+                color: $red !important;
+                & svg {
+                    & rect.link__rect, & path.link__rect {
+                        fill: $red !important;
+                        fill-opacity: 1;
+                    }
+                    & path {
+                        fill: $mainColor;
+                        fill-opacity: 1;
+                    }
+                }
+            }
+        }
+        &.link {
+            &:hover {
+                & svg {
+                    & rect.link__rect, & path.link__rect {
+                        fill: $yellow;
+                        fill-opacity: 1;
+                    }
+                    & path {
+                        fill: $mainColor;
+                        fill-opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
